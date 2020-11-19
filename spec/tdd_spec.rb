@@ -30,5 +30,7 @@ describe Array do
 		it "returns the indices of the most profitable pair of days" do
 			expect(prices.stock_picker).to eq([3, 5])
 		end
-	end
+    end
+    
+    describe 
 end
