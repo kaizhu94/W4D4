@@ -1,2 +1,3 @@
---color
---format documentation
+gem 'rspec'
+gem 'pry'
+gem 'byebug'
