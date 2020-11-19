@@ -3,42 +3,60 @@ require 'tower_of_hanoi.rb'
 describe TowerOfHanoi do 
 
     subject(:game) {TowerOfHanoi.new}
-
     describe "#initialize" do
         it "sets towers" do 
-            expect(game.towers).to eq([[4, 3, 2, 1],[],[]])
+            expect(game.towers).to eq([[3, 2, 1],[],[]])
         end
     end
 
 	describe "#move" do 
-		context "takes two arguments; start_tower and target_tower" do
-			it
+		it "does not allow moving from empty tower" do
+            expect { game.move(1, 2) }.to raise_error("Start_tower is empty")
+        end
+        
+        it "does not allow to move to smaller discs" do
+            game.move(0,1)
+            expect { game.move(0, 1) }.to raise_error("Can't move to smaller stack")
+        end
 
-		end
-
+        
         context "when moving a disc" do 
             it "move the top disc from one tower to another tower" do 
-                expect(game.move(,2)).to eq([[4,3],[2],[1]])
+                expect(game.move(0,1)).to eq([[3,2],[1],[]])
 			end
-			
-			i
         end
 	end
 	
-	describe "#valid_move?" do
-		it "should start from a valid tower" do 
-			
-			expect(game[1])).to_not be_empty
-		end
 
-
-	end
 
 
     describe "#won?" do 
-        it "checks if a tower is fully stacked and others are empty" do 
+        it "does not win from the start" do 
+            expect(game.won?).to be(false)
+        end
+        
+        it "is won if the last tower is fully stacked" do 
+            game.move(0,1)
+            game.move(0,2)
+            game.move(1,2)
+            game.move(2,0) 
+            game.move(2,1) 
+            game.move(0,1) 
+            game.move(0,2) 
+            game.move(1,0) 
+            game.move(1,2) 
+            game.move(0,2) 
+            expect(game.towers).to eq([[],[],[3,2,1]])
+        end
+        it "is won if the middle tower is fully stacked" do 
+            game.move(0,1) 
+            game.move(1,2)
+            game.move(0,1) 
+            game.move(2,0) 
+            game.move(2,1) 
+            game.move(0,1) 
             
-            expect().to eq([[],[],[4,3,2,1]])
+            expect(game.towers).to eq([[],[3,2,1],[]])
         end
     end
 end
