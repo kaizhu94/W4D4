@@ -16,6 +16,33 @@ class Array
             end
         end
         pairs
-    end
+	end
+	
+	def my_transpose
+		transposed = Array.new(3){[]}
 
+		(0...self.length).each do |i|
+			(0...self.length).each do |j|
+				transposed[j] << self[i][j]
+			end
+		end
+
+		transposed
+	end
+
+	def stock_picker
+		pair = []
+		max_profit = 0
+
+		(0...self.length).each do |i|
+			(i + 1...self.length).each do |j|
+				if self[j] - self[i] > max_profit
+					pair = [i, j]
+					max_profit = self[j] - self[i]
+				end
+			end
+		end
+
+		pair
+	end
 end

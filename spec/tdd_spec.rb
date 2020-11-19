@@ -18,4 +18,17 @@ describe Array do
         end
     end
 
+	describe "#my_transpose" do 
+		matrix = [[0, 1, 2], [3, 4, 5], [6, 7, 8]]
+		it "converts between the row-oriented and column-oriented representations" do
+			expect(matrix.my_transpose).to eq([[0, 3, 6], [1, 4, 7], [2, 5, 8]])
+		end
+	end
+
+	describe "#stock_picker" do
+		prices = [10, 15, 16, 8, 12, 25, 10]
+		it "returns the indices of the most profitable pair of days" do
+			expect(prices.stock_picker).to eq([3, 5])
+		end
+	end
 end
